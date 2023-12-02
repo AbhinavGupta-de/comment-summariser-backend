@@ -41,7 +41,7 @@ async function scrapeAmazonReviews(url, maxReview) {
 
 		// Loop through the items and push the comment property to the array
 		items.forEach((item) => {
-			console.log(item);
+			// console.log(item);
 			commentsArray.push(item.reviewDescription);
 		});
 

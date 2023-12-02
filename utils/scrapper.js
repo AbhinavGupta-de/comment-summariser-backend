@@ -45,7 +45,7 @@ async function scrapeReviews(url) {
 	// 		throw new Error('Unsupported website: ' + website);
 	// }
 	// Return the reviews
-	console.log(reviews);
+	// console.log(reviews);
 	return reviews;
 }
 
