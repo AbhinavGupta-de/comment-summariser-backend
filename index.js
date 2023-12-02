@@ -1,5 +1,8 @@
 const express = require('express');
 const summarizeRoute = require('./routes/summarize.route');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 
@@ -9,6 +12,8 @@ app.get('/', (req, res) => {
 
 app.post('/summarize', summarizeRoute);
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
 	console.log('Server is running on port 3000');
 });
