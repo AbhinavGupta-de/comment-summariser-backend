@@ -1,6 +1,7 @@
 // Import the functions for scrapping data from different websites
 const { scrapeAmazonReviews } = require('../config/amazon.js');
 const { scrapeFlipkartReviews } = require('../config/flipkart.js');
+const { scrapeGoogleMaps } = require('../config/googlemaps.js');
 
 // Add more imports as you create more functions for other websites
 
@@ -24,10 +25,11 @@ async function scrapeReviews(url, maxReivew) {
 			break;
 
 		case 3:
-			return null;
+			break;
 
 		case 4:
-			return null;
+			reviews = await scrapeGoogleMaps(url, maxReivew);
+			break;
 
 		case 5:
 			return null;
@@ -45,6 +47,8 @@ async function scrapeReviews(url, maxReivew) {
 	// 	'Quality and colour is just perfect ! Just buy  it if u want a non skidding and super absorbent mat. The water is absorbed within 4 secs as promised. The packaging, pattern and colour all good.',
 	// 	'It does not dry immediately  .water remains on mat .Disappointed for quality.pl advice what should be done for quick drying.',
 	// ];
+
+	console.log(reviews);
 
 	return reviews;
 }

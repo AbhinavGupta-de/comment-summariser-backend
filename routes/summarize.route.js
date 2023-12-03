@@ -22,6 +22,12 @@ router.post(
 			// If there are no errors, scrapeReviews the text from the website
 			const text = await scrapeReviews(url, maxReview);
 
+			if (!text || text.length === 0 || text === undefined || text === null) {
+				return res.status(500).json({ error: 'Something went wrong' });
+			}
+
+			console.log(text);
+
 			// Summarize the text using LangChain
 			const summary = await summarize(text);
 
