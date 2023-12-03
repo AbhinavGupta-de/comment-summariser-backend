@@ -56,10 +56,6 @@ async function scrapeFlipkartReviews(url, maxReview) {
 		// If an error occurs, log it to the console and return null
 		console.error(err);
 		return null;
-	} finally {
-		// Perform any cleanup or final actions here
-		// For example, you can close the client connection
-		// client.close();
 	}
 }
 

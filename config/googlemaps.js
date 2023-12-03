@@ -41,9 +41,6 @@ async function scrapeGoogleMaps(url, maxReview) {
 			// console.log(item);
 
 			let comment = item.text;
-			// comment = item.title + ' ' + comment;
-			// comment = comment.replace('/n', '');
-			// console.log(comment);
 
 			if (comment != null || comment != undefined) {
 				commentsArray.push(comment);
@@ -56,10 +53,6 @@ async function scrapeGoogleMaps(url, maxReview) {
 		// If an error occurs, log it to the console and return null
 		console.error(err);
 		return null;
-	} finally {
-		// Perform any cleanup or final actions here
-		// For example, you can close the client connection
-		// client.close();
 	}
 }
 

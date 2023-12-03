@@ -2,6 +2,7 @@
 const { scrapeAmazonReviews } = require('../config/amazon.js');
 const { scrapeFlipkartReviews } = require('../config/flipkart.js');
 const { scrapeGoogleMaps } = require('../config/googlemaps.js');
+const { scrapYouTube } = require('../config/youtube.js');
 
 // Add more imports as you create more functions for other websites
 
@@ -25,6 +26,7 @@ async function scrapeReviews(url, maxReivew) {
 			break;
 
 		case 3:
+			reviews = await scrapYouTube(url, maxReivew);
 			break;
 
 		case 4:
@@ -48,7 +50,7 @@ async function scrapeReviews(url, maxReivew) {
 	// 	'It does not dry immediately  .water remains on mat .Disappointed for quality.pl advice what should be done for quick drying.',
 	// ];
 
-	console.log(reviews);
+	// console.log(reviews);
 
 	return reviews;
 }

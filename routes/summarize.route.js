@@ -26,7 +26,7 @@ router.post(
 				return res.status(500).json({ error: 'Something went wrong' });
 			}
 
-			console.log(text);
+			// console.log(text);
 
 			// Summarize the text using LangChain
 			const summary = await summarize(text);

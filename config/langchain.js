@@ -20,7 +20,7 @@ const run = async (reviews) => {
 	});
 
 	const res = await model.call(
-		`I have collected some reviews, can you give a summary of how the customers feel about the product? ${reviews}`
+		`I have collected some reviews, can you give a summary of how the customers feel about the product? Write the summary professionally ${reviews}`
 	);
 	// console.log({ res });
 	return res;
@@ -28,8 +28,6 @@ const run = async (reviews) => {
 
 async function summarize(text) {
 	const summary = await run(text);
-
-	// summary = summary.replace('/n', '');
 
 	return summary;
 }
