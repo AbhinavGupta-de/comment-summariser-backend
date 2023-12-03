@@ -1,6 +1,7 @@
 const express = require('express');
 const summarizeRoute = require('./routes/summarize.route');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 dotenv.config();
 
