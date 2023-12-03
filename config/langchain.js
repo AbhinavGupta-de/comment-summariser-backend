@@ -63,7 +63,7 @@ const run = async (reviews) => {
 	});
 
 	const res = await model.call(
-		`I have collected some reviews, can you give a summary of how the customers feel about the product? Write that is more of sentance form don't give it too long make it a bit short and concise not more than 300-400 words unless it is really necessary you think and are leaving some important details. ${reviews}`
+		`I have collected some reviews, can you give a summary of how the customers feel about the product? ${reviews}`
 	);
 	// console.log({ res });
 	return res;

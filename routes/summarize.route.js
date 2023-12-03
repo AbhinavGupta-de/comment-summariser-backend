@@ -15,21 +15,12 @@ router.post(
 	// Validate the input data
 	// body('url').isURL().withMessage('URL is required and must be valid'),
 	async (req, res) => {
-		// Get the input data from the request body
-		// console.log(req.body);
 		const { url } = req.body;
-		// console.log(url);
-
-		// Check for validation errors
-		// const errors = validationResult(req);
-		// if (!errors.isEmpty()) {
-		// If there are errors, send back a 400 status code and a message
-		// return res.status(400).json({ errors: errors.array() });
-		// }
+		const { maxReview } = req.body;
 
 		try {
 			// If there are no errors, scrapeReviews the text from the website
-			const text = await scrapeReviews(url);
+			const text = await scrapeReviews(url, maxReview);
 
 			// Summarize the text using LangChain
 			const summary = await summarize(text);
