@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+app.use(cors());
+
 const app = express();
 
 app.get('/', (req, res) => {
