@@ -1,24 +1,20 @@
-// scrapeAmazonReviews.js
 const { ApifyClient } = require('apify-client');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Initialize the ApifyClient with API token
 const client = new ApifyClient({
 	token: `${process.env.APIFY_TOKEN}`,
 });
 
-// Define an async function that takes a url and a maxReview as parameters
 async function scrapeAmazonReviews(url, maxReview) {
-	// Prepare Actor input
 	const input = {
 		productUrls: [
 			{
-				url: `${url}`, // Use the url parameter as the url property
+				url: `${url}`,
 			},
 		],
-		maxReviews: maxReview, // Use the maxReview parameter as the value of the maxReviews property
+		maxReviews: maxReview,
 		includeGdprSensitive: false,
 		filterByRatings: ['allStars'],
 		proxyConfiguration: {
@@ -29,33 +25,17 @@ async function scrapeAmazonReviews(url, maxReview) {
 			return {};
 		},
 	};
-	// Use a try-catch-finally block to handle errors
-	try {
-		// Run the Actor and wait for it to finish
-		const run = await client.actor('R8WeJwLuzLZ6g4Bkk').call(input);
+	const run = await client.actor('R8WeJwLuzLZ6g4Bkk').call(input);
 
-		// console.log(run);
+	const { items } = await client.dataset(run.defaultDatasetId).listItems();
 
-		// Fetch the results from the run's dataset
-		const { items } = await client.dataset(run.defaultDatasetId).listItems();
+	let commentsArray = [];
 
-		// Create an empty array to store the comments
-		let commentsArray = [];
+	items.forEach((item) => {
+		commentsArray.push(item.reviewDescription);
+	});
 
-		// Loop through the items and push the comment property to the array
-		items.forEach((item) => {
-			// console.log(item);
-			commentsArray.push(item.reviewDescription);
-		});
-
-		// Return the array of comments
-		return commentsArray;
-	} catch (err) {
-		// If an error occurs, log it to the console and return null
-		console.error(err);
-		return null;
-	}
+	return commentsArray;
 }
 
-// Export the function using module.exports
 module.exports = { scrapeAmazonReviews };
